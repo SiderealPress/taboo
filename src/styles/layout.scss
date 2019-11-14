@@ -1,0 +1,85 @@
+@import "./variables.scss";
+
+nav a {
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid brown;
+    list-style-type: none;
+    display: inline-block;
+}
+.word {
+    display: inline-block;
+    position: relative;
+    font-size: 18px;
+    text-align: center;
+    overflow: wrap;
+}
+.tool {
+    margin-top: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding-left: 30px;
+}
+.expanded .word {
+    margin-bottom: 40px;
+}
+.pos {
+    position: absolute;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    line-height: 18px;
+    color: teal;
+    display: block;
+}
+.gloss {
+    position: absolute;
+    font-family: garamond;
+    text-align: center;
+    height: 0%;
+    width: 100%;
+    font-size: 0px;
+    line-height: 0px;
+    opacity: 0;
+    transition: 0.2s all ease-out;
+}
+.expanded .gloss {
+    opacity: 1;
+    height: 100%;
+    font-size: 12px;
+    line-height: 18px;
+    transition: 0.3s all ease-out;
+    display: block;
+}
+.bookNav {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid gray;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 5%;
+    .textDiagram {
+        height: 100%;
+        width: 100%;
+    }
+    .handle {
+        height: 30px;
+        width: 100%;
+        position: absolute;
+        box-sizing: border-box;
+        left: 0;
+        top: 30%;
+        border: 3px solid brown;
+        &:hover {
+            box-shadow: 0 0 5px black;
+        }
+    }
+}
+

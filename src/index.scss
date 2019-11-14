@@ -1,0 +1,381 @@
+@import "./styles/variables.scss";
+@import "./styles/base.scss";
+@import "./styles/layout.scss";
+
+.videoWrapper {
+    background: black;
+}
+
+iframe {
+    border:0;
+}
+
+.creator {
+    font-family: Baskerville, Garamond;
+    font-style: italic;
+    margin-top: $baseline;
+    color: $baseTextSecondary;
+    .creationDate {
+        color: $accentSecondary;
+    }
+}
+
+.description {
+    font-size: $h4;
+    line-height: $h4 * $baselineProportion;
+}
+
+.metadataListBox {
+    position: relative;
+    border: 3px solid $borderColor;
+    background-color: cornsilk;
+    padding: 0 $baseline $baseline;
+    input {
+        display: none;
+        visibility: hidden;
+    }
+    .showToggle {
+        float: right;
+        margin: $baseline 0;
+        width: 115px;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: $supplementaryHeading;
+        border: 2px solid $supplementaryHeading;
+        padding: 0 $baseline/2;
+        border-radius: 5px;
+        &:hover {
+            background-color: $borderColor;
+            cursor: pointer;
+        }
+        &:before {
+            content: "▸";
+            display: inline-block;
+            transform: rotate(0deg);
+            transition: transform 0.3s ease-out;
+        }
+        &:after {
+            content: "more";
+            display: inline-block;
+        }
+        &:before {
+            content: "▸";
+            display: inline-block;
+            transform: rotate(0deg);
+            transition: transform 0.3s ease-out;
+        }
+    }
+    #toggle:checked ~ .showToggle {
+        &:before {
+            transform: rotate(90deg);
+            transition: transform 0.3s ease-out;
+        }
+        &:after {
+            content: "less ";
+            display: inline-block;
+        }
+    }
+    .metadataList {
+        overflow: hidden;
+        max-height: $baseline * 9;
+        transition: max-height 0.3s ease-out;
+        &:after {
+            content: "";
+            display: block;
+            background-image: linear-gradient(0deg, $supplementarySection 30%, rgba(0,0,0,0) 100%);
+            width: 100%;
+            height: $baseline * 4;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    }
+    #toggle:checked ~ .metadataList {
+        max-height: 2400px;
+        transition: max-height 1.3s ease-out;
+        &:after {
+            content: none;
+        }
+    }
+    .heightMask {
+    }
+}
+
+.metadataWrapper h5 {
+    font-family: Baskerville, Garamond;
+    font-style: italic;
+    color: $baseTextTertiary;
+    .sponsor {
+        font-style: normal;
+        color: $baseText;
+    }
+}
+
+.star {
+    color: $background;
+    vertical-align: middle;
+    font-size: 1.3em;
+    text-shadow: 0 0 1px $accentSecondary;
+    margin-right: 10px;
+    &.filled {
+        font-size: 1.8em;
+        color: $accent;
+        text-shadow: none;
+    };
+}
+
+.reviewsPanel {
+    h2 {
+        border-bottom: 3px solid $borderColor;
+        position: sticky;
+        top: 0;
+        margin-bottom: 0;
+        line-height: $baseline * 3.5;
+        background: $background;
+        z-index: 5;
+    }
+    .ratingsSummary {
+        display: inline-flex;
+        float: right;
+        margin: 0 auto;
+        overflow: hidden;
+        height: $baseline * 3;
+        justify-content: space-between;
+    }
+    .summaryStar {
+        position: relative;
+        text-align: center;
+        margin: $baseline / 4;
+        &.hasReviews {
+            cursor: pointer;
+        }
+        // These enable the curly brace reticule.
+        &.hasReviews:before, &.hasReviews:after {
+            opacity: 0;
+            color: $baseTextSecondary;
+            font-family: baskerville, garamond;
+            font-size: $h3;
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+        }
+        &.hasReviews.selected:before, &.hasReviews.selected:after {
+            color: $title;
+            opacity: 1;
+        }
+        &.hasReviews:before {
+            content:"{";
+            left: -50%;
+            transition: opacity 0.2s ease-out;
+        }
+        &.hasReviews:after {
+            content:"}";
+            right: -50%;
+            transition: opacity 0.2s ease-out;
+        }
+        &.hasReviews:hover:before {
+            opacity: 1;
+            content:"{";
+            left: -50%;
+            transition: opacity 0.2s ease-out;
+        }
+        &.hasReviews:hover:after {
+            opacity: 1;
+            content:"}";
+            right: -50%;
+            transition: opacity 0.2s ease-out;
+        }
+        // subtly shrinks star within the reticule.
+        .star {
+            transition: transform 0.2s ease-out;
+            font-size: $h4;
+            &.filled {
+                font-size: $h4;
+            }
+            &.half {
+                color: $background
+            }
+            &.half:before {
+                content: '✸';
+                color: $accent;
+                text-shadow: none;
+                position: absolute;
+                overflow: hidden;
+                width: 55%;
+            };
+        }
+        &.hasReviews:hover .star, &.hasReviews.selected .star,  {
+            transform: scale(0.8) translateY(-$baseline/4);
+            transition: transform 0.2s ease-out;
+        }
+        span {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+    .ratingPips {
+        font-family: baskerville, garamond;
+        color: black;
+        position: relative;
+        top: -$baseline * 2.5;
+    }
+    .reviewInfoStrip {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: $baseline * 2;
+        padding-top: $baseline;
+        padding-bottom: $baseline;
+        position: sticky;
+        top: $baseline * 3.5;
+        z-index: 2;
+        background-image: linear-gradient(180deg, $background 66%, rgba(0,0,0,0) 100%);
+        span {
+            line-height: $baseline;
+        }
+    }
+    .filterText {
+        font-family: baskerville, garamond;
+        font-style: italic;
+        font-size: $h5;
+        color: $baseTextTertiary;
+    }
+    .clearButton {
+        opacity: 0;
+        &:before {
+            content: "ⓧ ";
+            font-size: 0.7em;
+        };
+        @include button;
+        padding: 0 15px;
+        margin: 0;
+        transition: all 0.2s ease-out;
+    }
+    .reviewInfoStrip.filterSet {
+        .clearButton {
+            transition: all 0.2s ease-out;
+            opacity: 1;
+            float: right;
+        }
+    }
+}
+
+.review {
+    width:70%;
+    margin: 0 auto;
+    max-height: 300px;
+    filter: none;
+    transform: scaleY(1) translateY(0);
+    transition: all 0.2s ease-out;
+    &.filtered {
+        filter: blur(10px);
+        max-height: $baseline * 2;
+        transform: scaleY(0.2) translateY(-$baseline/4);
+        transition: all 0.2s ease-out;
+    }
+}
+
+.reviewer {
+    font-family: Baskerville, Garamond;
+    font-style: italic;
+    font-size: $baseline * 0.8;
+    color: $baseTextTertiary;
+    display: block;
+    text-align: right;
+    margin: 20px;
+    box-sizing: border-box;
+    .timestamp {
+        font-style: normal;
+        color: $accentSecondary;
+    }
+}
+
+.relatedItemsPanel {
+    height: 100vh;
+    padding: 0 $baseline;
+    position: sticky;
+    overflow: hidden;
+    top: -$baseline;
+    &:before, &:after {
+        content: "";
+        z-index: 5;
+        display: block;
+        width: 100%;
+        height: $baseline;
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+    &:before {
+        background-image: linear-gradient(180deg, $background 60%, rgba(0,0,0,0) 100%);
+        top: $baseline * 5;
+    }
+    &:after {
+        background-image: linear-gradient(0deg, $background 30%, rgba(0,0,0,0) 100%);
+        bottom: -$baseline;
+    }
+    h4 {
+        border-bottom: 3px solid $borderColor;
+        box-sizing: border-box;
+        padding-bottom: $baseline / 2;
+    }
+    .relatedItemsList {
+        height: 0;
+        padding-bottom: 40vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+}
+
+.relatedItem {
+    height: $baseline * 6;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    h5 {
+        margin-top: 0;
+        /* min-width: 0; */
+        /* white-space: nowrap; */
+        /* text-overflow: ellipsis; */
+        /* overflow:hidden; */
+    }
+    h6.creator {
+        margin-top: 0;
+    }
+    &:hover {
+        transform: scale(0.9);
+        transition: all 0.2s ease-out;
+    }
+    .relatedThumb {
+        float: left;
+        margin: $baseline/2 $baseline/2 $baseline/2 0;
+        border: 1px solid $borderColor;
+        height: $baseline * 4;
+    }
+    .ratingsSummary {
+        display: flex;
+        margin-top: $baseline / 2;
+        .star {
+            margin-right: 2px;
+            font-size: $baseFontSize;
+            &.filled {
+                color: $accent;
+                font-size: $baseFontSize;
+            }
+            &.half {
+                color: $background;
+                font-size: $baseFontSize;
+            }
+            &.half:before {
+                content: '✸';
+                color: $accent;
+                text-shadow: none;
+                position: absolute;
+                overflow: hidden;
+                width: 55%;
+            };
+        }
+    }
+}

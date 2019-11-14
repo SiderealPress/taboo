@@ -1,0 +1,31 @@
+// Color Palette
+$background: ivory;
+$title: maroon;
+$baseText: black;
+$baseTextSecondary: darkGray;
+$baseTextTertiary: gray;
+$accent: deepskyblue;
+$accentSecondary: darkturquoise;
+$accentSecondary: darkCyan;
+$borderColor: blanchedalmond;
+$supplementarySection: cornsilk;
+$supplementaryHeading: saddlebrown;
+
+// Baseline Typographic Scale
+// http://webtypography.net/2.2.2
+$baseFontSize: 16px;
+$baselineProportion: 1.45;
+$baseline: $baseFontSize * $baselineProportion;
+
+$scaleProportion: 1.333; // major third.
+
+$h5: 1rem * $scaleProportion;
+// h5 {font-size: 1.333em;}
+$h4: $h5 * $scaleProportion;
+// h4 {font-size: 1.777em;}
+$h3: $h4 * $scaleProportion;
+// font-size: 2.369em;
+$h2: $h3 * $scaleProportion;
+// h2 {font-size: 3.157em;}
+$h1: $h2 * $scaleProportion;
+//font-size: 4.209em;

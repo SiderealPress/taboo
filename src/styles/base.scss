@@ -1,0 +1,103 @@
+@import "./variables.scss";
+
+html {
+  font-family: Optima, Helvetica Neue, Helvetica;
+  font-size: $baseFontSize;
+  line-height: $baseline;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    background-color: ivory;
+    font-weight: 400;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: $baseline * 2 $baseline * 4;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 400;
+    color: maroon;
+    margin: ($baseline * 2) 0 $baseline;
+}
+
+h1 {
+    // font-size: 4.209em;
+    font-size: $h1;
+    line-height: $baseline * 3;
+    margin-bottom: $baseline;
+}
+
+h2 {
+    // font-size: 3.157em;
+    font-size: $h2;
+    line-height: $baseline * 3;
+}
+
+h3 {
+    font-size: $h3;
+    line-height: $baseline * 2;
+}
+
+h4 {
+    font-size: $h4;
+    line-height: $baseline * 2;
+}
+
+h5 {
+    font-size: $h5;
+    margin: $baseline 0 0;
+}
+
+small, h6 {
+    font-weight: normal;
+    font-size: 0.8rem;
+    line-height: 0.8;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+dl {
+    margin: 0 auto;
+}
+
+dt {
+    margin-top: $baseline;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+    color: $supplementaryHeading;
+    text-transform: uppercase;
+}
+
+@mixin button {
+    margin: $baseline 0;
+    text-transform: uppercase;
+    font-family: Optima, Helvetica Neue;
+    font-weight: bold;
+    color: $supplementaryHeading;
+    background-color: $supplementarySection;
+    border: 2px solid $supplementaryHeading;
+    padding: 0 $baseline/2;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+        background-color: $borderColor;
+    }
+
+}
+
+label {
+    margin: 5px;
+}
