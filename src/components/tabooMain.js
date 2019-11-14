@@ -6,12 +6,10 @@ export default class TabooMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentWord '',
+      currentWord: '',
       tutor: '',
       guesser: ''
     };
-
-    this.setModeType = this.setModeType.bind(this);
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -32,13 +30,13 @@ export default class TabooMain extends React.Component {
 
     return (
       <>
-      <nav>
-        <a href="#0" name='sentences' onClick={this.handleChange}>START</a>
-        <a href="#0" name='languageMap' onClick={this.handleChange}>NEW WORD</a>
-      </nav>
-      <div id="Video Container">
-        <p>Here is a video stream</p>
-      </div>
+        <nav>
+          <a href="#0" name='currentWord' onClick={this.handleChange}>START</a>
+          <a href="#0" name='currentWord' onClick={this.handleChange}>NEW WORD</a>
+        </nav>
+        <div id="Video Container">
+          <p>Here is a video stream</p>
+        </div>
       </>
     );
   };

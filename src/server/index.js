@@ -6,29 +6,6 @@ const { Client } = require('pg');
 var logger = require('morgan');
 const connectionString = 'postgres://drewwinget:drewwinget@localhost:5432/sentences';
 const vConnectionString = 'postgres://verbsadmin:@localhost:5432/verbos';
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : null,
-  database : 'omegawiki',
-  insecureAuth: true
-});
-
-// connection.connect();
-
-// connection.query(
-//   'SELECT * FROM uw_expression WHERE expression_id IN(SELECT expression_id FROM uw_syntrans WHERE defined_meaning_id IN(SELECT defined_meaning_id FROM uw_syntrans WHERE expression_id IN(SELECT expression_id FROM uw_expression WHERE spelling = "hola"))) AND language_id = 85', function (error, results, fields) {
-//   if (error) throw error;
-//     console.log(results.map(result => result.spelling.toString()));
-// });
-
-// connection.end();
-
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-// var regionsRouter = require('./routes/regions');
-// var annotationsRouter = require('./routes/annotations');
 
 var app = express();
 
@@ -154,49 +131,6 @@ app.post('/glosses', function (req, res, next) {
     res.status(200).send(result.rows);
   });
 });
-
-// app.post('/glosses', function (req, res, next) {
-//   let words = req.body.words.map(word => ({
-//     chars: word,
-//     translation: ''
-//   }));
-
-//   console.log(words);
-//   connection.connect();
-//   connection.query(
-//     `SELECT * FROM uw_expression WHERE expression_id IN(SELECT expression_id FROM uw_syntrans WHERE defined_meaning_id IN(SELECT defined_meaning_id FROM uw_syntrans WHERE expression_id IN(SELECT expression_id FROM uw_expression WHERE spelling = "${words[0].chars}"))) AND language_id = 85 LIMIT 1`, function (error, results, fields) {
-//       if (error) {
-//         console.log(err);
-//         res.status(400).send(err);
-//       };
-//       if (results[0]) {
-//         words[0].translation = results[0].spelling.toString();
-//         res.status(200).send(words);
-//       } else {
-//         res.status(200).send(words);
-//       }
-//       connection.end();
-//     });
-// });
-
-// app.get('/form/:person/:number/:tense/:mood/:verb', function(req, res, next) {
-//   let person = req.params.person;
-//   let number = req.params.number;
-//   let tense = req.params.tense;
-//   let mood = req.params.mood;
-//   let verb = req.params.verb;
-
-//   tense = tense.charAt(0).toUpperCase() + tense.slice(1);
-//   vClient.query(
-//     `SELECT * FROM verbs WHERE infinitive = '${verb}' AND tense = '${tense}'`,
-//     function (err, result) {
-//       if (err) {
-//         console.log(err);
-//         res.status(400).send(err);
-//       }
-//       res.status(200).send(result.rows);
-//     });
-// });
 
 app.get('/', function(req, res){
   res.sendFile(path.resolve('../../dist/index.html'));
